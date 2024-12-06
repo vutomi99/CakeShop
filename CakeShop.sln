@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CakeShop", "CakeShop\CakeShop.csproj", "{31A5611B-7B8D-4FE6-B691-B9B816F10A0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CakeShop", "CakeShop\CakeShop.csproj", "{31A5611B-7B8D-4FE6-B691-B9B816F10A0A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CakeShop.DataAccess", "Shop.DataAccess\CakeShop.DataAccess.csproj", "{9D67A6CD-2958-43D3-B666-86FFE385EB95}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CakeShop.Models", "Shop.Models\CakeShop.Models.csproj", "{2DA0BBE4-6324-484C-AD15-EE5D318ED876}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CakeShop.Utility", "CakeShop.Utility\CakeShop.Utility.csproj", "{EF917AA3-40D2-415C-8109-FE1A50A307EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{31A5611B-7B8D-4FE6-B691-B9B816F10A0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31A5611B-7B8D-4FE6-B691-B9B816F10A0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31A5611B-7B8D-4FE6-B691-B9B816F10A0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D67A6CD-2958-43D3-B666-86FFE385EB95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D67A6CD-2958-43D3-B666-86FFE385EB95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D67A6CD-2958-43D3-B666-86FFE385EB95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D67A6CD-2958-43D3-B666-86FFE385EB95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DA0BBE4-6324-484C-AD15-EE5D318ED876}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DA0BBE4-6324-484C-AD15-EE5D318ED876}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DA0BBE4-6324-484C-AD15-EE5D318ED876}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DA0BBE4-6324-484C-AD15-EE5D318ED876}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF917AA3-40D2-415C-8109-FE1A50A307EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF917AA3-40D2-415C-8109-FE1A50A307EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF917AA3-40D2-415C-8109-FE1A50A307EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF917AA3-40D2-415C-8109-FE1A50A307EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
