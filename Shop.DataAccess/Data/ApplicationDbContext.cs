@@ -1,7 +1,7 @@
 ﻿using CakeShop.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace CakeShop.Data
+namespace CakeShop.DataAccess.Data
 {
     public class ApplicationDbContext: DbContext
     {
