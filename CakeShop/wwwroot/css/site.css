@@ -7,6 +7,29 @@ a.navbar-brand {
     word-break: break-all;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+#main-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.card {
+    flex-grow: 1; /* Ensures the card expands to fill available space */
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+
 
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {

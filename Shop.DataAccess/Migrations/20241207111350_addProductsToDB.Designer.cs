@@ -3,6 +3,7 @@ using CakeShop.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CakeShop.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241207111350_addProductsToDB")]
+    partial class addProductsToDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,19 +47,19 @@ namespace CakeShop.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 7,
+                            Id = 1,
                             DisplayOrder = 1,
                             Name = "Electronics"
                         },
                         new
                         {
-                            Id = 8,
+                            Id = 2,
                             DisplayOrder = 2,
                             Name = "Cars"
                         },
                         new
                         {
-                            Id = 9,
+                            Id = 3,
                             DisplayOrder = 3,
                             Name = "Home Deco"
                         });
@@ -70,14 +73,7 @@ namespace CakeShop.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -97,17 +93,13 @@ namespace CakeShop.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
-
                     b.ToTable("Products");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CategoryId = 7,
                             Description = "Powerful and reliable for any Engine",
-                            ImageUrl = "",
                             ListPrice = 90.0,
                             Name = "Njk Spark Plugs",
                             ProductId = 254,
@@ -116,9 +108,7 @@ namespace CakeShop.DataAccess.Migrations
                         new
                         {
                             Id = 2,
-                            CategoryId = 8,
                             Description = "Powerful 1975 Piano",
-                            ImageUrl = "",
                             ListPrice = 47000.0,
                             Name = "Grand Piano",
                             ProductId = 4,
@@ -127,25 +117,12 @@ namespace CakeShop.DataAccess.Migrations
                         new
                         {
                             Id = 3,
-                            CategoryId = 9,
                             Description = "12cm,14cm office table with chair",
-                            ImageUrl = "",
                             ListPrice = 90.0,
                             Name = "Office Table",
                             ProductId = 54,
                             supplier = "Hassan and Hassan"
                         });
-                });
-
-            modelBuilder.Entity("CakeShop.Models.Product", b =>
-                {
-                    b.HasOne("CakeShop.Models.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
                 });
 #pragma warning restore 612, 618
         }

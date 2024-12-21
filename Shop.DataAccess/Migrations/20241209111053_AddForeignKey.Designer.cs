@@ -3,6 +3,7 @@ using CakeShop.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CakeShop.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241209111053_AddForeignKey")]
+    partial class AddForeignKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,10 +80,6 @@ namespace CakeShop.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<double>("ListPrice")
                         .HasColumnType("float");
 
@@ -107,7 +106,6 @@ namespace CakeShop.DataAccess.Migrations
                             Id = 1,
                             CategoryId = 7,
                             Description = "Powerful and reliable for any Engine",
-                            ImageUrl = "",
                             ListPrice = 90.0,
                             Name = "Njk Spark Plugs",
                             ProductId = 254,
@@ -118,7 +116,6 @@ namespace CakeShop.DataAccess.Migrations
                             Id = 2,
                             CategoryId = 8,
                             Description = "Powerful 1975 Piano",
-                            ImageUrl = "",
                             ListPrice = 47000.0,
                             Name = "Grand Piano",
                             ProductId = 4,
@@ -129,7 +126,6 @@ namespace CakeShop.DataAccess.Migrations
                             Id = 3,
                             CategoryId = 9,
                             Description = "12cm,14cm office table with chair",
-                            ImageUrl = "",
                             ListPrice = 90.0,
                             Name = "Office Table",
                             ProductId = 54,
