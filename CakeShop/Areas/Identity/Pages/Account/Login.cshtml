@@ -1,0 +1,168 @@
+﻿@page
+@model LoginModel
+
+<style>
+    /* General Page Styles */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f7fa;
+        margin: 0;
+        padding: 0;
+    }
+
+    .card {
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border: none;
+    }
+
+    .card-header {
+        background-color: #2F4F4F; /* Dark greenish color */
+        color: white;
+        text-align: center;
+        padding: 20px;
+        font-size: 24px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        font-weight: bold;
+    }
+
+    .card-body {
+        background-color: #FFFFFF;
+        padding: 30px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    .form-floating {
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+        .form-floating input,
+        .form-floating select {
+            border-radius: 5px;
+            border: 1px solid #CED4DA;
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        .form-floating label {
+            font-size: 16px;
+            color: #555;
+            position: absolute;
+            top: -7px;
+            left: 10px;
+            background-color: #fff;
+            padding: 0 5px;
+        }
+
+    .form-control {
+        box-shadow: none;
+    }
+
+    .btn-primary {
+        background-color: #2F4F4F; /* Dark greenish color */
+        border-color: #2F4F4F;
+        padding: 12px;
+        font-size: 16px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        width: 100%;
+    }
+
+        .btn-primary:hover {
+            background-color: #233A3A; /* Slightly darker shade */
+            border-color: #233A3A;
+        }
+
+    .text-danger {
+        font-size: 14px;
+        color: #DC3545;
+    }
+
+    h2 {
+        font-size: 28px;
+        color: #333;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    h3 {
+        font-size: 24px;
+        color: #333;
+        font-weight: bold;
+    }
+</style>
+
+<div class="card shadow mt-4">
+    <div class="card-header">
+        Login
+    </div>
+    <div class="card-body">
+        <form id="loginForm" method="post">
+            <h2>Use a Local Account to Log In</h2>
+            <hr />
+
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" placeholder="name@example.com" />
+                <label asp-for="Input.Email">Email</label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Password" class="form-control" autocomplete="current-password" placeholder="password" />
+                <label asp-for="Input.Password">Password</label>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-check mb-3">
+                <input class="form-check-input" asp-for="Input.RememberMe" />
+                <label class="form-check-label" asp-for="Input.RememberMe">Remember Me</label>
+            </div>
+
+            <div>
+                <button id="loginSubmit" type="submit" class="btn btn-primary">Log In</button>
+            </div>
+
+            <div class="d-flex justify-content-between pt-3">
+                <a id="forgotPassword" asp-page="./ForgotPassword">Forgot your password?</a>
+                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                <a id="resendConfirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+            </div>
+        </form>
+
+        <section class="mt-4">
+            <h3>Use Another Service to Log In</h3>
+            <hr />
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <p>
+                        There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">
+                            article about setting up this ASP.NET application to support logging in via external services
+                        </a>.
+                    </p>
+                }
+                else
+                {
+                    <form id="externalAccount" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                        @foreach (var provider in Model.ExternalLogins!)
+                        {
+                            <button type="submit" class="btn btn-primary mt-2" name="provider" value="@provider.Name" title="Log in using @provider.DisplayName">
+                                @provider.DisplayName
+                            </button>
+                        }
+                    </form>
+                }
+            }
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

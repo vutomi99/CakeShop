@@ -1,11 +1,14 @@
 ﻿using CakeShop.DataAccess.Data;
 using CakeShop.DataAccess.Repository.IRepository;
 using CakeShop.Models;
+using CakeShop.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CakeShop.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles =SD.Role_Admin)]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfwork;

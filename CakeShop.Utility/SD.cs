@@ -8,6 +8,9 @@ namespace CakeShop.Utility
 {
     public static class SD
     {
+        public const string Role_User_cust = "customer";
+
+        public const string Role_Admin = "Admin";
 
     }
 }

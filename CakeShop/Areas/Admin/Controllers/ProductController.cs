@@ -2,6 +2,8 @@
 using CakeShop.DataAccess.Repository.IRepository;
 using CakeShop.Models;
 using CakeShop.Models.ViewModels;
+using CakeShop.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -9,7 +11,8 @@ using System.Collections.Generic;
 
 namespace CakeShop.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area("Admin")] 
+    [Authorize(Roles = SD.Role_Admin)]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfwork;
