@@ -41,20 +41,28 @@ namespace CakeShop.DataAccess.Repository.IRepository
             return query.FirstOrDefault();
         }
 
-        public IEnumerable<T> GetAll(string? includeproperties = null)
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
-            if (!string.IsNullOrEmpty(includeproperties)) {
-             
-                foreach(var icludeProp in includeproperties.Split(new char[] {','},StringSplitOptions.RemoveEmptyEntries))
+
+            // Apply filtering if provided
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            // Apply Include for related properties if provided
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    query = query.Include(icludeProp);      
+                    query = query.Include(includeProp);
                 }
-            
             }
 
             return query.ToList();
         }
+
 
         public void Remove(T entity)
         {

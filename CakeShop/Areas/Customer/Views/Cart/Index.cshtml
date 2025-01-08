@@ -1,0 +1,72 @@
+﻿@model IEnumerable<CakeShop.Models.Cart>
+
+@{
+    ViewData["Title"] = "My Cart";
+}
+
+<h1>My Shopping Cart</h1>
+
+@if (!Model.Any())
+{
+    <p>Your cart is empty. <a asp-controller="Home" asp-action="Index">Continue shopping</a>.</p>
+}
+else
+{
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Product?.Name</td>
+                        <td>@item.Product?.ListPrice.ToString("C", new System.Globalization.CultureInfo("en-ZA"))</td>
+                        <td>
+                            <form asp-controller="Cart" asp-action="UpdateCart" method="post">
+                                <input type="hidden" name="cartId" value="@item.Id" />
+                                <input type="number" name="quantity" value="@item.Quantity" min="1" class="form-control form-control-sm" />
+                                
+                            </form>
+                        </td>
+                        <td>@(item.Quantity * (item.Product?.ListPrice ?? 0))</td>
+                        <td>
+                           <form asp-controller="Cart" asp-action="RemoveFromCart" method="post" style="display:inline;">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                           </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-4">
+        <h3>Total: @Model.Sum(item => item.Quantity * (item.Product?.ListPrice ?? 0)).ToString("C", new System.Globalization.CultureInfo("en-ZA"))</h3>
+        <form asp-controller="Cart" asp-action="Checkout" method="post" style="display:inline;">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-success">Proceed to Checkout</button>
+        </form>
+        <a asp-area="Customer" asp-controller="Home" asp-action="Index" class="btn btn-primary">Continue Shopping</a>
+
+    </div>
+}

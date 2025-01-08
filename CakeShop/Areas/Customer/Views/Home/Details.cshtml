@@ -1,11 +1,12 @@
 ﻿@model Product
-<form method="post">
+
+<form method="post" asp-action="AddToCart" asp-controller="Cart">
     <div class="card shadow border-0 mt-4">
         <div class="card-header bg-secondary bg-gradient text-light py-4">
             <div class="row">
                 <div class="col-12 text-center">
                     <h3 class="text-white text-uppercase">@Model.Name</h3>
-                    <p class="text-white-50 fw-semibold mb-0">Supplied by @Model.supplier </p>
+                    <p class="text-white-50 fw-semibold mb-0">Supplied by @Model.supplier</p>
                 </div>
             </div>
         </div>
@@ -14,7 +15,7 @@
                 <div class="row">
                     <div class="col-6 col-md-2 offset-lg-1 pb-1 mb-2">
                         <!-- Back Button -->
-                        <a  asp-action="Index" class="btn btn-secondary">
+                        <a asp-action="Index" class="btn btn-secondary">
                             <i class="bi bi-arrow-left-circle fs-2"></i>
                         </a>
                     </div>
@@ -24,20 +25,17 @@
                         <img src="@Model.ImageUrl" width="100%" class="rounded" />
                     </div>
                     <div class="col-12 col-lg-6 offset-lg-1">
-
                         <div class="col-12 col-md-6 pb-4">
                             <span class="badge">@Model.Category.Name</span>
                         </div>
                         <div class="row ps-2">
-                            <h6 class="text-dark text-opacity-50  pb-2">
+                            <h6 class="text-dark text-opacity-50 pb-2">
                                 Cost Price:
                                 <span>
                                     @Model.ListPrice.ToString("C", new System.Globalization.CultureInfo("en-ZA"))
                                 </span>
                             </h6>
                         </div>
-                       
-                       
                         <div class="row pl-2 my-3">
                             <p class="text-secondary lh-sm">@Html.Raw(Model.Description)</p>
                         </div>
@@ -48,22 +46,24 @@
                                           id="inputGroup-sizing-default">
                                         Count
                                     </span>
-                                    <input type="number" value="1" class="form-control text-end"
+                                    <input type="hidden" name="ProductId" value="@Model.Id" /> <!-- Pass Product ID -->
+                                    <input type="number" name="Quantity" value="1" class="form-control text-end"
                                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
-
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12 col-md-6 pb-1">
-                                <button type="submit" disabled
-                                        class="btn btn-primary bg-gradient  w-100 py-2 text-uppercase fw-semibold">
-                                    Add to Cart (Comming Soon...)
-                                </button>
+                                <form asp-controller="Cart" asp-action="AddToCart" method="post" style="display:inline;">
+                                    <button type="submit"
+                                            class="btn btn-primary bg-gradient  w-100 py-2 text-uppercase fw-semibold">
+                                        Add to Cart
+                                    </button>
+                                </form>
+                               
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

@@ -1,0 +1,120 @@
+﻿@{
+    ViewData["Title"] = "Order Confirmation";
+}
+
+<div class="thank-you-container">
+    <h1 class="thank-you-title">Thank You for Your Order!</h1>
+    <p class="thank-you-message">We appreciate your business and hope to see you again soon.</p>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Continue Shopping</a>
+</div>
+
+<script>
+    // Add some dynamic effects using JavaScript
+    document.addEventListener("DOMContentLoaded", () => {
+        const title = document.querySelector('.thank-you-title');
+        const message = document.querySelector('.thank-you-message');
+        const button = document.querySelector('.btn');
+
+        // Add bounce effect to the button after page load
+        button.classList.add('bounce');
+
+        // Reveal the title and message with a delay
+        title.style.opacity = 0;
+        message.style.opacity = 0;
+
+        setTimeout(() => {
+            title.style.opacity = 1;
+            title.style.transform = 'translateY(0)';
+        }, 500);
+
+        setTimeout(() => {
+            message.style.opacity = 1;
+            message.style.transform = 'translateY(0)';
+        }, 1000);
+    });
+</script>
+
+<style>
+    body {
+        background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+        font-family: 'Arial', sans-serif;
+        color: #333;
+        text-align: center;
+        padding: 2rem;
+        animation: backgroundMove 5s infinite alternate;
+    }
+
+    .thank-you-container {
+        margin-top: 5rem;
+        padding: 2rem;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        animation: fadeIn 2s ease-in-out;
+    }
+
+    .thank-you-title {
+        font-size: 2.5rem;
+        color: #2c3e50;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+    }
+
+    .thank-you-message {
+        font-size: 1.5rem;
+        margin: 1.5rem 0;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+    }
+
+    .btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 1.2rem;
+        color: #fff;
+        background-color: #27ae60;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: transform 0.3s, background-color 0.3s;
+        position: relative;
+        animation: buttonPulse 2s infinite ease-in-out;
+    }
+
+    .btn:hover {
+        transform: scale(1.1);
+        background-color: #2ecc71;
+    }
+
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @@keyframes backgroundMove {
+        from {
+            background-position: 0% 0%;
+        }
+
+        to {
+            background-position: 100% 100%;
+        }
+    }
+
+    @@keyframes buttonPulse {
+        0%, 100% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.1);
+        }
+    }
+    }
+</style>
